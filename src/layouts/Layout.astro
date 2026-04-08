@@ -1,23 +1,224 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = 'Fisioterapia y Osteopatía Gefaell Borrás en Vigo. Especialistas en rehabilitación, pilates terapéutico y bienestar integral.' 
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>{title} | Fisioterapia Gefaell Borrás</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --color-primary: #0056b3;
+    --color-primary-dark: #003b82;
+    --color-primary-light: #e6f0ff;
+    --color-secondary: #2f7ed8;
+    --color-bg: #ffffff;
+    --color-surface: #f8fafc;
+    --color-surface-soft: #f1f6fd;
+
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
+    --color-border: #e2e8f0;
+    
+    /* Tipografía y medidas */
+    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --max-width: 1160px;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --transition: 0.3s ease;
+    --shadow-soft: 0 14px 36px rgba(0, 45, 98, 0.08);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(circle at 8% 0%, rgba(0, 86, 179, 0.09), transparent 34%),
+      radial-gradient(circle at 88% 100%, rgba(47, 126, 216, 0.1), transparent 32%),
+      var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  section {
+    padding: 92px 24px;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .surface-card {
+    background: linear-gradient(150deg, #ffffff, var(--color-surface-soft));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.15rem;
+    margin-bottom: 56px;
+    max-width: 600px;
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    display: inline-block;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    opacity: 1;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    background-color: #ffffff;
+    border: 1px solid #b8cff2;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-primary-light);
+    opacity: 1;
+  }
+
+  .zigzag-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 72px;
+  }
+
+  .zigzag-block.reverse .img-placeholder,
+  .zigzag-block.reverse .media-frame {
+    order: 2;
+  }
+
+  .zigzag-block.reverse .copy {
+    order: 1;
+  }
+
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(100deg, var(--color-surface), #ffffff, var(--color-surface));
+    background-size: 220% 100%;
+    animation: shimmer 2.2s linear infinite;
+  }
+
+  .img-placeholder.wide {
+    aspect-ratio: 16 / 9;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -20% 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 74px 20px;
+    }
+
+    .section-subtitle {
+      margin-bottom: 40px;
+      font-size: 1.03rem;
+    }
+
+    .zigzag-block {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .zigzag-block.reverse .img-placeholder,
+    .zigzag-block.reverse .media-frame,
+    .zigzag-block.reverse .copy {
+      order: unset;
+    }
+  }
 </style>

@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import rayoPlaceholder from "../assets/rayo.webp";
+---
+
+<section id="inicio" class="hero">
+  <div class="container zigzag-block">
+    <div class="media-frame">
+      <Image class="img-placeholder-img wide" src={rayoPlaceholder} alt="Placeholder de imagen de clinica" width={1280} />
+    </div>
+
+    <div class="copy">
+      <h1>Fisioterapia y osteopatia con criterio clinico y trato humano</h1>
+      <p>
+        Bienvenido a una clinica donde cada paciente es atendido como persona, no como un numero.
+        Yago Gefaell Borras te acompana con escucha activa, valoracion rigurosa y un tratamiento
+        personalizado para recuperar movilidad, confianza y bienestar.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/34622233939?text=Hola%2C%20quiero%20pedir%20cita%20en%20Fisioterapia%20Gefaell%20Borras">Pedir cita por WhatsApp</a>
+        <a class="btn-secondary" href="https://www.google.com/maps/place/Fisioterapia+Gefaell+Borr%C3%A1s/@42.1943774,-8.7829851,18z/data=!3m1!4b1!4m6!3m5!1s0xd258a5d5cc3cd45:0x93b7206e31d0b85!8m2!3d42.1943763!4d-8.7822862!16s%2Fg%2F11bzsgkdms?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Ver ubicacion en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: 132px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4.8vw, 3.35rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    color: var(--color-primary-dark);
+    max-width: 20ch;
+  }
+
+  .hero p {
+    color: var(--color-text-muted);
+    font-size: 1.03rem;
+    max-width: 64ch;
+  }
+
+  .hero-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .media-frame {
+    width: 100%;
+  }
+
+  .img-placeholder-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+  }
+
+  .img-placeholder-img.wide {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding-top: 112px;
+    }
+
+    .hero h1 {
+      max-width: 100%;
+    }
+
+    .media-frame {
+      max-width: 100%;
+    }
+
+    .img-placeholder-img.wide {
+      max-height: none;
+    }
+  }
+</style>

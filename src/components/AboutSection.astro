@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import rayoPlaceholder from "../assets/rayo.webp";
+---
+
+<section id="clinica" class="about">
+  <div class="container zigzag-block reverse">
+    <article class="copy about-copy">
+      <h2 class="section-title">Santiago Gefaell Borras, experiencia clinica al servicio de cada paciente</h2>
+      <p>
+        Fisioterapia Gefaell Borras nace con una idea clara: unir rigor profesional y cercania real.
+        Yago te atiende personalmente en cada sesión para entender bien tu caso y ajustar el
+        tratamiento a lo que necesitas en cada momento.
+      </p>
+      <p>
+        A lo largo de los años, la clinica se ha consolidado como un espacio de confianza en Vigo,
+        especialmente en Coruxo, donde muchos pacientes llegan por recomendación y permanecen por
+        la calidad del seguimiento y el trato humano.
+      </p>
+      <p class="about-meta">Registro Sanitario: C-36-002508</p>
+    </article>
+
+    <div class="media-frame">
+      <Image class="img-placeholder-img" src={rayoPlaceholder} alt="Placeholder de imagen de consulta" width={960} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-top: 54px;
+  }
+
+  .about-copy {
+    max-width: 68ch;
+  }
+
+  .about-copy p {
+    color: var(--color-text-muted);
+    margin-top: 14px;
+    font-size: 1.02rem;
+  }
+
+  .about-meta {
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    margin-top: 18px;
+  }
+
+  .img-placeholder-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .about {
+      padding-top: 36px;
+    }
+  }
+</style>

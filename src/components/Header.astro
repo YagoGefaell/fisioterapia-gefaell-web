@@ -1,0 +1,165 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#servicios', label: 'Qué tratamos' },
+  { href: '#clinica', label: 'Cómo trabaja' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header class="header">
+    <nav class="nav container">
+        <a href="/" class="logo" aria-label="Volver al inicio">
+          <Image src={logo} alt="Fisioterapia Gefaell" width={64} />
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            {navLinks.map(({ href, label }) => (
+                <li><a href={href}>{label}</a></li>
+            ))}
+        </ul>
+    </nav>
+</header>
+
+<script>
+    const toggle = document.getElementById('menuToggle')!;
+    const links = document.getElementById('navLinks')!;
+
+    toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+    })
+
+    links.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .logo img {
+    height: auto;
+    border-radius: 0;
+  }
+
+  .logo:hover {
+    opacity: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+  }
+
+  .nav-links a {
+    color: var(--color-primary-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .nav-links a:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    opacity: 1;
+  }
+
+  .nav-links .nav-phone {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: 1px solid var(--color-primary);
+  }
+
+  .nav-links .nav-phone:hover {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-primary-dark);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  @media (max-width: 640px) {
+    .logo img {
+      width: 112px;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: #ffffff;
+      padding: 16px;
+      border-bottom: 1px solid var(--color-border);
+      gap: 4px;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 10px 16px;
+    }
+
+    .nav-links .nav-phone {
+      text-align: center;
+      margin-top: 4px;
+    }
+  }
+</style>
