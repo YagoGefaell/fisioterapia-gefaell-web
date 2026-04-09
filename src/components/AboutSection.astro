@@ -3,82 +3,30 @@ import { Image } from "astro:assets";
 import fisio from "../assets/fisio.jpeg";
 ---
 
-<section id="clinica" class="about">
-  <div class="container zigzag-block reverse">
-    <article class="copy about-copy reveal">
+<section id="clinica" class="scroll-mt-24 pt-[54px] md:scroll-mt-28 max-md:pt-9">
+  <div class="site-container grid items-center gap-[72px] md:grid-cols-2 max-md:gap-7">
+    <article class="reveal max-w-[68ch] md:order-1">
       <h2 class="section-title">Una clínica pensada para tratar con precisión y acompañar con cercanía</h2>
-      <p>
+      <p class="mt-3 text-[1rem] text-ink-muted">
         Contamos con espacios funcionales, equipamiento moderno y un entorno tranquilo para que cada
         sesión sea eficaz y cómoda. Desde la primera valoración te explicamos con claridad qué está
         pasando, cómo lo vamos a abordar y qué objetivos clínicos vamos a perseguir.
       </p>
-      <p>
+      <p class="mt-3 text-[1rem] text-ink-muted">
         Aplicamos razonamiento clínico, terapia manual y ejercicio terapéutico con seguimiento continuo
         de la evolución. Ajustamos el plan en función de tus respuestas para acelerar la recuperación y
         minimizar recaídas, con un enfoque totalmente personalizado.
       </p>
-      <ul class="about-list">
-        <li>Valoración funcional completa y objetivos medibles.</li>
-        <li>Tecnología clínica para monitorizar progresos reales.</li>
-        <li>Trato cercano con comunicación directa en cada fase.</li>
+      <ul class="mt-4 grid gap-2.5">
+        <li class="w-fit rounded-full bg-[rgba(19,138,156,0.09)] px-[14px] py-2 text-[0.94rem] font-medium text-brand-700">Valoración funcional completa y objetivos medibles.</li>
+        <li class="w-fit rounded-full bg-[rgba(19,138,156,0.09)] px-[14px] py-2 text-[0.94rem] font-medium text-brand-700">Tecnología clínica para monitorizar progresos reales.</li>
+        <li class="w-fit rounded-full bg-[rgba(19,138,156,0.09)] px-[14px] py-2 text-[0.94rem] font-medium text-brand-700">Trato cercano con comunicación directa en cada fase.</li>
       </ul>
-      <p class="about-meta">Registro Sanitario: C-36-002508</p>
+      <p class="mt-[18px] font-semibold text-brand-700">Registro Sanitario: C-36-002508</p>
     </article>
 
-    <div class="media-frame reveal">
-      <Image class="img-placeholder-img" src={fisio} alt="Placeholder de imagen de consulta" width={960} />
+    <div class="reveal md:order-2">
+      <Image class="media-image aspect-[4/5]" src={fisio} alt="Placeholder de imagen de consulta" width={960} />
     </div>
   </div>
 </section>
-
-<style>
-  .about {
-    padding-top: 54px;
-  }
-
-  .about-copy {
-    max-width: 68ch;
-  }
-
-  .about-copy p {
-    color: var(--color-text-muted);
-    margin-top: 12px;
-    font-size: 1rem;
-  }
-
-  .about-list {
-    margin-top: 16px;
-    display: grid;
-    gap: 10px;
-  }
-
-  .about-list li {
-    border-radius: 999px;
-    background: rgba(19, 138, 156, 0.09);
-    color: var(--color-primary-dark);
-    padding: 8px 14px;
-    width: fit-content;
-    font-size: 0.94rem;
-    font-weight: 500;
-  }
-
-  .about-meta {
-    color: var(--color-primary-dark);
-    font-weight: 600;
-    margin-top: 18px;
-  }
-
-  .img-placeholder-img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius);
-    object-fit: cover;
-    box-shadow: var(--shadow-soft);
-  }
-
-  @media (max-width: 768px) {
-    .about {
-      padding-top: 36px;
-    }
-  }
-</style>

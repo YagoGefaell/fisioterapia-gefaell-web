@@ -3,104 +3,24 @@ import { Image } from "astro:assets";
 import clinica from "../assets/clinica.jpeg";
 ---
 
-<section id="inicio" class="hero">
-  <div class="container zigzag-block">
-    <div class="media-frame reveal">
-      <Image class="img-placeholder-img wide" src={clinica} alt="Placeholder de imagen de clínica" width={1024} />
+<section id="inicio" class="scroll-mt-24 pt-[84px] md:scroll-mt-28 md:pt-[84px]">
+  <div class="site-container grid items-center gap-[72px] md:grid-cols-2 max-md:gap-7">
+    <div class="reveal w-full overflow-hidden rounded-card shadow-soft max-md:max-w-full">
+      <Image class="h-full min-h-[460px] w-full object-cover object-center md:min-h-[700px] md:scale-[1.1]" src={clinica} alt="Placeholder de imagen de clínica" width={1024} />
     </div>
 
-    <div class="copy reveal">
-      <p class="eyebrow">Clínica de fisioterapia en Coruxo, Vigo</p>
-      <h1>Recupera movimiento y confianza con un enfoque clínico de alta precisión</h1>
-      <p>
+    <div class="reveal">
+      <p class="mb-[10px] text-[0.84rem] font-bold uppercase tracking-[0.14em] text-accent-500">Clínica de fisioterapia en Coruxo, Vigo</p>
+      <h1 class="mb-4 max-w-[20ch] text-[clamp(2rem,4.8vw,3.35rem)] leading-[1.18] tracking-[-0.02em] text-brand-700 max-md:max-w-full">Recupera movimiento y confianza con un enfoque clínico de alta precisión</h1>
+      <p class="max-w-[64ch] text-[1.02rem] text-ink-muted">
         En Fisioterapia Gefaell Borrás unimos fisioterapia manual, ejercicio terapéutico y tecnología
         de valoración para tratar el origen del dolor, no solo sus síntomas. Diseñamos contigo un plan
         claro, medible y adaptado a tu ritmo de vida.
       </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="https://wa.me/34622233939?text=Hola%2C%20querría%20pedir%20cita">Pedir cita por WhatsApp</a>
-        <a class="btn-secondary" href="https://www.google.com/maps/place/Fisioterapia+Gefaell+Borr%C3%A1s/@42.1943774,-8.7829851,18z/data=!3m1!4b1!4m6!3m5!1s0xd258a5d5cc3cd45:0x93b7206e31d0b85!8m2!3d42.1943763!4d-8.7822862!16s%2Fg%2F11bzsgkdms?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Ver ubicación en Google Maps</a>
+      <div class="mt-[30px] flex flex-wrap gap-3.5 max-md:gap-2.5">
+        <a class="btn-primary w-full text-center md:w-auto" href="https://wa.me/34622233939?text=Hola%2C%20querría%20pedir%20cita">Pedir cita por WhatsApp</a>
+        <a class="btn-secondary w-full text-center md:w-auto" href="https://www.google.com/maps/place/Fisioterapia+Gefaell+Borr%C3%A1s/@42.1943774,-8.7829851,18z/data=!3m1!4b1!4m6!3m5!1s0xd258a5d5cc3cd45:0x93b7206e31d0b85!8m2!3d42.1943763!4d-8.7822862!16s%2Fg%2F11bzsgkdms?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Ver ubicación en Google Maps</a>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  .hero {
-    padding-top: 84px;
-  }
-
-  .eyebrow {
-    color: var(--color-accent);
-    font-size: 0.84rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 10px;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 4.8vw, 3.35rem);
-    line-height: 1.18;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    color: var(--color-primary-dark);
-    max-width: 20ch;
-  }
-
-  .hero p {
-    color: var(--color-text-muted);
-    font-size: 1.02rem;
-    max-width: 64ch;
-  }
-
-  .hero-actions {
-    margin-top: 30px;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .media-frame {
-    width: 100%;
-  }
-
-  .img-placeholder-img {
-    width: 100%;
-    border-radius: var(--radius);
-    object-fit: cover;
-    box-shadow: var(--shadow-soft);
-  }
-
-  .img-placeholder-img.wide {
-    aspect-ratio: 16 / 9;
-    min-height: 360px;
-  }
-
-  @media (max-width: 900px) {
-    .hero {
-      padding-top: 84px;
-    }
-
-    .hero h1 {
-      max-width: 100%;
-    }
-
-    .media-frame {
-      max-width: 100%;
-    }
-
-    .hero-actions {
-      gap: 10px;
-    }
-
-    .hero-actions a {
-      width: 100%;
-      text-align: center;
-    }
-
-    .img-placeholder-img.wide {
-      max-height: none;
-    }
-  }
-</style>

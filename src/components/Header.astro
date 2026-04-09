@@ -10,20 +10,49 @@ const navLinks = [
 ];
 ---
 
-<header class="header" id="siteHeader">
-    <nav class="nav container">
-        <a href="/" class="logo" aria-label="Volver al inicio">
-          <Image src={logo} alt="Fisioterapia Gefaell" width={50} />
-        </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-            {navLinks.map(({ href, label, variant }) => (
-              <li><a href={href} class={variant ? `pill pill-${variant}` : ''}>{label}</a></li>
-            ))}
-        </ul>
-    </nav>
+<header
+  class="sticky top-0 z-[100] border-b border-transparent bg-[linear-gradient(180deg,rgba(252,254,255,0.8),rgba(246,250,255,0.86))] backdrop-blur-[14px] transition-all duration-300"
+  id="siteHeader"
+>
+  <nav class="site-container relative flex min-h-[74px] items-center justify-between px-6 py-[14px]">
+    <a href="/" class="inline-flex items-center rounded-[10px] hover:opacity-100" aria-label="Volver al inicio">
+      <Image
+        src={logo}
+        alt="Fisioterapia Gefaell"
+        width={50}
+        class="h-auto w-[112px] rounded-none sm:w-[50px]"
+      />
+    </a>
+    <button
+      class="flex cursor-pointer flex-col gap-[5px] border-none bg-transparent p-1 sm:hidden"
+      id="menuToggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span class="block h-[2px] w-6 rounded-[2px] bg-brand-700 transition-all duration-300"></span>
+      <span class="block h-[2px] w-6 rounded-[2px] bg-brand-700 transition-all duration-300"></span>
+      <span class="block h-[2px] w-6 rounded-[2px] bg-brand-700 transition-all duration-300"></span>
+    </button>
+    <ul
+      class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-2 border-b border-line bg-[#fafdff] p-4 shadow-[0_12px_26px_rgba(16,58,96,0.12)] sm:static sm:z-auto sm:flex sm:flex-row sm:items-center sm:gap-2 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none"
+      id="navLinks"
+    >
+      {navLinks.map(({ href, label, variant }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'block rounded-soft px-4 py-[10px] text-center text-[0.95rem] font-semibold text-brand-700 transition-all duration-300 hover:bg-[rgba(13,79,133,0.09)] hover:text-brand-700 hover:opacity-100 sm:px-[14px] sm:py-[9px] sm:text-left',
+              variant === 'primary' &&
+                'w-full rounded-card border border-brand-500 bg-[linear-gradient(135deg,#0d4f85,#0a365a)] px-[18px] py-[9px] text-white shadow-[0_10px_20px_rgba(13,79,133,0.24)] hover:border-brand-100 hover:bg-[linear-gradient(135deg,#e1f2ff,#d1e8fb)] hover:text-brand-700 hover:shadow-[0_14px_24px_rgba(13,79,133,0.14)] sm:w-auto',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 </header>
 
 <script>
@@ -33,160 +62,27 @@ const navLinks = [
 
     const onScroll = () => {
       if (!header) return;
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      const isScrolled = window.scrollY > 8;
+
+      header.classList.toggle('border-line', isScrolled);
+      header.classList.toggle('shadow-[0_10px_26px_rgba(13,49,82,0.14)]', isScrolled);
     };
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
     toggle.addEventListener('click', () => {
-        const open = links.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', String(open));
+      const open = links.classList.contains('hidden');
+      links.classList.toggle('hidden', !open);
+      links.classList.toggle('flex', open);
+      toggle.setAttribute('aria-expanded', String(open));
     })
 
     links.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        links.classList.remove('open');
+        links.classList.add('hidden');
+        links.classList.remove('flex');
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
 </script>
-
-<style>
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: linear-gradient(180deg, rgba(252, 254, 255, 0.8), rgba(246, 250, 255, 0.86));
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: all var(--transition);
-  }
-
-  .header.is-scrolled {
-    border-bottom-color: var(--color-border);
-    box-shadow: 0 10px 26px rgba(13, 49, 82, 0.14);
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 24px;
-    min-height: 74px;
-  }
-
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 10px;
-  }
-
-  .logo img {
-    height: auto;
-    border-radius: 0;
-  }
-
-  .logo:hover {
-    opacity: 1;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .nav-links a {
-    color: var(--color-primary-dark);
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 9px 14px;
-    border-radius: var(--radius-sm);
-    transition: all var(--transition);
-  }
-
-  .nav-links a:hover {
-    background-color: rgba(13, 79, 133, 0.09);
-    color: var(--color-primary-dark);
-    opacity: 1;
-  }
-
-  .pill {
-    border-radius: 999px;
-    padding: 9px 18px;
-    border: 1px solid transparent;
-  }
-
-  .nav-links a.pill-primary {
-    background: linear-gradient(135deg, #0d4f85, #0a365a);
-    color: #ffffff;
-    border: 1px solid #0d4f85;
-    box-shadow: 0 10px 20px rgba(13, 79, 133, 0.24);
-  }
-
-  .nav-links a.pill-primary:hover {
-    background: linear-gradient(135deg, #0e568f, #0a365a);
-    color: #ffffff;
-    box-shadow: 0 14px 24px rgba(10, 54, 90, 0.28);
-    transform: translateY(-2px);
-    opacity: 1;
-  }
-
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .menu-toggle span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-primary-dark);
-    border-radius: 2px;
-    transition: transform var(--transition), opacity var(--transition);
-  }
-
-  @media (max-width: 640px) {
-    .logo img {
-      width: 112px;
-    }
-
-    .menu-toggle {
-      display: flex;
-    }
-
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      flex-direction: column;
-      background: #fafdff;
-      padding: 16px;
-      border-bottom: 1px solid var(--color-border);
-      gap: 8px;
-      box-shadow: 0 12px 26px rgba(16, 58, 96, 0.12);
-    }
-
-    .nav-links.open {
-      display: flex;
-    }
-
-    .nav-links a {
-      display: block;
-      padding: 10px 16px;
-      text-align: center;
-    }
-
-    .pill {
-      width: 100%;
-    }
-  }
-</style>

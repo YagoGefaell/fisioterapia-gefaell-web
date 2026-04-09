@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+	--font-heading: "Poppins", system-ui, -apple-system, sans-serif;
+	--font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+	--color-brand-500: #0d4f85;
+	--color-brand-700: #0a365a;
+	--color-brand-100: #e1f2ff;
+	--color-accent-500: #138a9c;
+	--color-page: #f3f7fb;
+	--color-surface: #ffffff;
+	--color-surface-soft: #f7fbff;
+	--color-ink: #132236;
+	--color-ink-muted: #526173;
+	--color-line: #d2dfec;
+
+	--radius-card: 12px;
+	--radius-soft: 8px;
+
+	--shadow-soft: 0 14px 30px rgba(13, 49, 82, 0.11);
+	--shadow-hover: 0 24px 38px rgba(13, 49, 82, 0.17);
+}
+
+@layer base {
+	html {
+		@apply overflow-x-hidden scroll-smooth;
+	}
+
+	body {
+		@apply min-h-screen bg-page font-body leading-loose text-ink;
+		background:
+			radial-gradient(circle at 8% 0%, rgba(13, 79, 133, 0.15), transparent 34%),
+			radial-gradient(circle at 92% 96%, rgba(19, 138, 156, 0.14), transparent 38%),
+			linear-gradient(155deg, rgba(255, 255, 255, 0.7), rgba(245, 250, 255, 0.8)),
+			#f3f7fb;
+	}
+
+	h1,
+	h2,
+	h3 {
+		@apply font-heading font-semibold leading-tight tracking-[-0.01em];
+	}
+
+	a,
+	button,
+	li,
+	p {
+		@apply font-body;
+	}
+
+	a {
+		@apply text-brand-500 no-underline transition-all duration-300;
+	}
+
+	a:hover {
+		@apply opacity-80;
+	}
+
+	img {
+		@apply block max-w-full rounded-soft;
+	}
+
+	section {
+		@apply px-6 py-20 md:px-6 md:py-20 max-md:px-5 max-md:py-[74px];
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		*,
+		*::before,
+		*::after {
+			animation: none !important;
+			transition: none !important;
+			transform: none !important;
+		}
+	}
+}
+
+@layer components {
+	.site-container {
+		@apply mx-auto max-w-[1160px];
+	}
+
+	.surface-card {
+		@apply rounded-card shadow-soft;
+		background: linear-gradient(155deg, #ffffff, #f7fbff);
+	}
+
+	.section-title {
+		@apply mb-4 text-[clamp(2rem,5vw,2.8rem)] font-semibold tracking-[-0.02em] text-brand-500;
+	}
+
+	.section-subtitle {
+		@apply mb-14 max-w-[600px] text-[1.15rem] text-ink-muted max-md:mb-10 max-md:text-[1.03rem];
+	}
+
+	.btn-primary {
+		@apply inline-block rounded-card border border-transparent bg-brand-500 px-7 py-3 font-semibold text-white shadow-[0_10px_20px_rgba(13,79,133,0.22)] transition-all duration-300;
+	}
+
+	.btn-primary:hover {
+		@apply border-brand-100 bg-brand-100 text-brand-700 opacity-100 shadow-[0_14px_24px_rgba(13,79,133,0.14)];
+		transform: translateY(-2px);
+	}
+
+	.btn-secondary {
+		@apply inline-block rounded-card border border-[#b8cff2] bg-white px-7 py-3 font-semibold text-brand-700 transition-all duration-300;
+	}
+
+	.btn-secondary:hover {
+		@apply border-brand-100 bg-brand-100/80 opacity-100 shadow-[0_12px_22px_rgba(13,79,133,0.1)];
+		transform: translateY(-2px);
+	}
+
+	.reveal {
+		@apply translate-y-6 opacity-0 transition-all duration-700;
+	}
+
+	.reveal.is-visible {
+		@apply translate-y-0 opacity-100;
+	}
+
+	.media-image {
+		@apply h-full w-full rounded-card object-cover shadow-soft;
+	}
+}

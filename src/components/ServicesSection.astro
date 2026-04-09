@@ -27,83 +27,25 @@ const services = [
 ];
 ---
 
-<section id="servicios">
-  <div class="container">
+<section id="servicios" class="scroll-mt-24 md:scroll-mt-28">
+  <div class="site-container">
     <h2 class="section-title reveal">Servicios clínicos de alto nivel, adaptados a tu caso</h2>
     <p class="section-subtitle reveal">
       Tratamientos diseñados para resolver dolor, recuperar función y mantener resultados en el tiempo con una estrategia clínica clara.
     </p>
 
-    <div class="services-grid">
+    <div class="grid gap-[14px] md:grid-cols-2 md:gap-[18px] lg:grid-cols-3">
       {services.map((service, index) => (
-        <article class="service-card surface-card reveal" style={`transition-delay: ${index * 70}ms;`}>
-          <span class="service-dot" aria-hidden="true"></span>
-          <div class="service-copy">
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-          </div>
-        </article>
+        <div class="reveal" style={`transition-delay: ${index * 70}ms;`}>
+          <article class="surface-card relative min-h-[190px] overflow-hidden rounded-card transition-all duration-300 hover:translate-y-[-6px] hover:shadow-hover">
+            <span class="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#138a9c,#0d4f85)]" aria-hidden="true"></span>
+            <div class="px-5 pb-5 pt-[22px]">
+              <h3 class="mb-2.5 text-[1.08rem] font-semibold text-brand-700">{service.title}</h3>
+              <p class="text-[0.96rem] leading-[1.62] text-ink-muted">{service.description}</p>
+            </div>
+          </article>
+        </div>
       ))}
     </div>
   </div>
 </section>
-
-<style>
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .service-card {
-    position: relative;
-    transition: all 0.3s ease;
-    min-height: 190px;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .service-dot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #138a9c, #0d4f85);
-  }
-
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
-  }
-
-  .service-copy h3 {
-    color: var(--color-primary-dark);
-    margin-bottom: 10px;
-    font-size: 1.08rem;
-    font-weight: 600;
-  }
-
-  .service-copy p {
-    color: var(--color-text-muted);
-    font-size: 0.96rem;
-    line-height: 1.62;
-  }
-
-  .service-copy {
-    padding: 22px 20px 20px;
-  }
-
-  @media (max-width: 980px) {
-    .services-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-  }
-</style>
