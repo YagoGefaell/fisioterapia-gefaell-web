@@ -1,27 +1,32 @@
 ---
 import { Image } from "astro:assets";
-import rayoPlaceholder from "../assets/rayo.webp";
+import fisio from "../assets/fisio.jpeg";
 ---
 
 <section id="clinica" class="about">
   <div class="container zigzag-block reverse">
-    <article class="copy about-copy">
-      <h2 class="section-title">Santiago Gefaell Borrás, experiencia clínica al servicio de cada paciente</h2>
+    <article class="copy about-copy reveal">
+      <h2 class="section-title">Una clínica pensada para tratar con precisión y acompañar con cercanía</h2>
       <p>
-        Fisioterapia Gefaell Borrás nace con una idea clara: unir rigor profesional y cercanía real.
-        Yago te atiende personalmente en cada sesión para entender bien tu caso y ajustar el
-        tratamiento a lo que necesitas en cada momento.
+        Contamos con espacios funcionales, equipamiento moderno y un entorno tranquilo para que cada
+        sesión sea eficaz y cómoda. Desde la primera valoración te explicamos con claridad qué está
+        pasando, cómo lo vamos a abordar y qué objetivos clínicos vamos a perseguir.
       </p>
       <p>
-        A lo largo de los años, la clínica se ha consolidado como un espacio de confianza en Vigo,
-        especialmente en Coruxo, donde muchos pacientes llegan por recomendación y permanecen por
-        la calidad del seguimiento y el trato humano.
+        Aplicamos razonamiento clínico, terapia manual y ejercicio terapéutico con seguimiento continuo
+        de la evolución. Ajustamos el plan en función de tus respuestas para acelerar la recuperación y
+        minimizar recaídas, con un enfoque totalmente personalizado.
       </p>
+      <ul class="about-list">
+        <li>Valoración funcional completa y objetivos medibles.</li>
+        <li>Tecnología clínica para monitorizar progresos reales.</li>
+        <li>Trato cercano con comunicación directa en cada fase.</li>
+      </ul>
       <p class="about-meta">Registro Sanitario: C-36-002508</p>
     </article>
 
-    <div class="media-frame">
-      <Image class="img-placeholder-img" src={rayoPlaceholder} alt="Placeholder de imagen de consulta" width={960} />
+    <div class="media-frame reveal">
+      <Image class="img-placeholder-img" src={fisio} alt="Placeholder de imagen de consulta" width={960} />
     </div>
   </div>
 </section>
@@ -37,8 +42,24 @@ import rayoPlaceholder from "../assets/rayo.webp";
 
   .about-copy p {
     color: var(--color-text-muted);
-    margin-top: 14px;
-    font-size: 1.02rem;
+    margin-top: 12px;
+    font-size: 1rem;
+  }
+
+  .about-list {
+    margin-top: 16px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .about-list li {
+    border-radius: 999px;
+    background: rgba(19, 138, 156, 0.09);
+    color: var(--color-primary-dark);
+    padding: 8px 14px;
+    width: fit-content;
+    font-size: 0.94rem;
+    font-weight: 500;
   }
 
   .about-meta {
@@ -51,8 +72,8 @@ import rayoPlaceholder from "../assets/rayo.webp";
     width: 100%;
     aspect-ratio: 4 / 5;
     border-radius: var(--radius);
-    border: 1px solid var(--color-border);
     object-fit: cover;
+    box-shadow: var(--shadow-soft);
   }
 
   @media (max-width: 768px) {

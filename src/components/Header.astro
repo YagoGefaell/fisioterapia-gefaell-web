@@ -6,11 +6,11 @@ const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#servicios', label: 'Qué tratamos' },
   { href: '#clinica', label: 'Cómo trabaja' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#contacto', label: 'Contacto', variant: 'primary' },
 ];
 ---
 
-<header class="header">
+<header class="header" id="siteHeader">
     <nav class="nav container">
         <a href="/" class="logo" aria-label="Volver al inicio">
           <Image src={logo} alt="Fisioterapia Gefaell" width={50} />
@@ -19,8 +19,8 @@ const navLinks = [
             <span></span><span></span><span></span>
         </button>
         <ul class="nav-links" id="navLinks">
-            {navLinks.map(({ href, label }) => (
-                <li><a href={href}>{label}</a></li>
+            {navLinks.map(({ href, label, variant }) => (
+              <li><a href={href} class={variant ? `pill pill-${variant}` : ''}>{label}</a></li>
             ))}
         </ul>
     </nav>
@@ -29,6 +29,15 @@ const navLinks = [
 <script>
     const toggle = document.getElementById('menuToggle')!;
     const links = document.getElementById('navLinks')!;
+    const header = document.getElementById('siteHeader');
+
+    const onScroll = () => {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     toggle.addEventListener('click', () => {
         const open = links.classList.toggle('open');
@@ -48,16 +57,23 @@ const navLinks = [
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
+    background: linear-gradient(180deg, rgba(252, 254, 255, 0.8), rgba(246, 250, 255, 0.86));
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition);
+  }
+
+  .header.is-scrolled {
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 10px 26px rgba(13, 49, 82, 0.14);
   }
 
   .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 24px;
+    padding: 14px 24px;
+    min-height: 74px;
   }
 
   .logo {
@@ -77,33 +93,43 @@ const navLinks = [
 
   .nav-links {
     display: flex;
-    gap: 6px;
+    gap: 8px;
+    align-items: center;
   }
 
   .nav-links a {
     color: var(--color-primary-dark);
     font-size: 0.95rem;
     font-weight: 600;
-    padding: 6px 14px;
+    padding: 9px 14px;
     border-radius: var(--radius-sm);
-    transition: background var(--transition), color var(--transition);
+    transition: all var(--transition);
   }
 
   .nav-links a:hover {
-    background-color: var(--color-primary-light);
+    background-color: rgba(13, 79, 133, 0.09);
     color: var(--color-primary-dark);
     opacity: 1;
   }
 
-  .nav-links .nav-phone {
-    background-color: var(--color-primary);
-    color: #ffffff;
-    border: 1px solid var(--color-primary);
+  .pill {
+    border-radius: 999px;
+    padding: 9px 18px;
+    border: 1px solid transparent;
   }
 
-  .nav-links .nav-phone:hover {
-    background-color: var(--color-primary-dark);
+  .nav-links a.pill-primary {
+    background: linear-gradient(135deg, #0d4f85, #0a365a);
     color: #ffffff;
+    border: 1px solid #0d4f85;
+    box-shadow: 0 10px 20px rgba(13, 79, 133, 0.24);
+  }
+
+  .nav-links a.pill-primary:hover {
+    background: linear-gradient(135deg, #0e568f, #0a365a);
+    color: #ffffff;
+    box-shadow: 0 14px 24px rgba(10, 54, 90, 0.28);
+    transform: translateY(-2px);
     opacity: 1;
   }
 
@@ -142,10 +168,11 @@ const navLinks = [
       left: 0;
       right: 0;
       flex-direction: column;
-      background: #ffffff;
+      background: #fafdff;
       padding: 16px;
       border-bottom: 1px solid var(--color-border);
-      gap: 4px;
+      gap: 8px;
+      box-shadow: 0 12px 26px rgba(16, 58, 96, 0.12);
     }
 
     .nav-links.open {
@@ -155,11 +182,11 @@ const navLinks = [
     .nav-links a {
       display: block;
       padding: 10px 16px;
+      text-align: center;
     }
 
-    .nav-links .nav-phone {
-      text-align: center;
-      margin-top: 4px;
+    .pill {
+      width: 100%;
     }
   }
 </style>

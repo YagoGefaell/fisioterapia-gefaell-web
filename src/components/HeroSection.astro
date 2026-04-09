@@ -1,20 +1,21 @@
 ---
 import { Image } from "astro:assets";
-import rayoPlaceholder from "../assets/rayo.webp";
+import clinica from "../assets/clinica.jpeg";
 ---
 
 <section id="inicio" class="hero">
   <div class="container zigzag-block">
-    <div class="media-frame">
-      <Image class="img-placeholder-img wide" src={rayoPlaceholder} alt="Placeholder de imagen de clínica" width={1280} />
+    <div class="media-frame reveal">
+      <Image class="img-placeholder-img wide" src={clinica} alt="Placeholder de imagen de clínica" width={1024} />
     </div>
 
-    <div class="copy">
-      <h1>Fisioterapia y osteopatía con criterio clínico y trato humano</h1>
+    <div class="copy reveal">
+      <p class="eyebrow">Clínica de fisioterapia en Coruxo, Vigo</p>
+      <h1>Recupera movimiento y confianza con un enfoque clínico de alta precisión</h1>
       <p>
-        Bienvenido a una clínica donde cada paciente es atendido como persona, no como un número.
-        Yago Gefaell Borrás te acompaña con escucha activa, valoración rigurosa y un tratamiento
-        personalizado para recuperar movilidad, confianza y bienestar.
+        En Fisioterapia Gefaell Borrás unimos fisioterapia manual, ejercicio terapéutico y tecnología
+        de valoración para tratar el origen del dolor, no solo sus síntomas. Diseñamos contigo un plan
+        claro, medible y adaptado a tu ritmo de vida.
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="https://wa.me/34622233939?text=Hola%2C%20querría%20pedir%20cita">Pedir cita por WhatsApp</a>
@@ -26,7 +27,16 @@ import rayoPlaceholder from "../assets/rayo.webp";
 
 <style>
   .hero {
-    padding-top: 100px;
+    padding-top: 84px;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
   }
 
   .hero h1 {
@@ -40,7 +50,7 @@ import rayoPlaceholder from "../assets/rayo.webp";
 
   .hero p {
     color: var(--color-text-muted);
-    font-size: 1.03rem;
+    font-size: 1.02rem;
     max-width: 64ch;
   }
 
@@ -58,17 +68,18 @@ import rayoPlaceholder from "../assets/rayo.webp";
   .img-placeholder-img {
     width: 100%;
     border-radius: var(--radius);
-    border: 1px solid var(--color-border);
     object-fit: cover;
+    box-shadow: var(--shadow-soft);
   }
 
   .img-placeholder-img.wide {
     aspect-ratio: 16 / 9;
+    min-height: 360px;
   }
 
   @media (max-width: 900px) {
     .hero {
-      padding-top: 112px;
+      padding-top: 84px;
     }
 
     .hero h1 {
@@ -77,6 +88,15 @@ import rayoPlaceholder from "../assets/rayo.webp";
 
     .media-frame {
       max-width: 100%;
+    }
+
+    .hero-actions {
+      gap: 10px;
+    }
+
+    .hero-actions a {
+      width: 100%;
+      text-align: center;
     }
 
     .img-placeholder-img.wide {

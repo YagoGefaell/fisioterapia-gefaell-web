@@ -19,7 +19,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <title>{title} | Fisioterapia Gefaell Borrás</title>
   </head>
   <body>
@@ -35,25 +35,27 @@ const {
   }
 
   :root {
-    --color-primary: #0056b3;
-    --color-primary-dark: #003b82;
-    --color-primary-light: #e6f0ff;
-    --color-secondary: #2f7ed8;
-    --color-bg: #ffffff;
-    --color-surface: #f8fafc;
-    --color-surface-soft: #f1f6fd;
+    --color-primary: #0d4f85;
+    --color-primary-dark: #0a365a;
+    --color-primary-light: #e6f2fb;
+    --color-accent: #138a9c;
+    --color-bg: #f3f7fb;
+    --color-surface: #ffffff;
+    --color-surface-soft: #f7fbff;
 
-    --color-text: #1e293b;
-    --color-text-muted: #64748b;
-    --color-border: #e2e8f0;
+    --color-text: #132236;
+    --color-text-muted: #526173;
+    --color-border: #d2dfec;
     
-    /* Tipografía y medidas */
-    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --max-width: 1160px;
-    --radius: 16px;
+    --radius: 12px;
     --radius-sm: 8px;
+    --anchor-offset: 112px;
     --transition: 0.3s ease;
-    --shadow-soft: 0 14px 36px rgba(0, 45, 98, 0.08);
+    --shadow-soft: 0 14px 30px rgba(13, 49, 82, 0.11);
+    --shadow-hover: 0 24px 38px rgba(13, 49, 82, 0.17);
   }
 
   html {
@@ -62,10 +64,11 @@ const {
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     background:
-      radial-gradient(circle at 8% 0%, rgba(0, 86, 179, 0.09), transparent 34%),
-      radial-gradient(circle at 88% 100%, rgba(47, 126, 216, 0.1), transparent 32%),
+      radial-gradient(circle at 8% 0%, rgba(13, 79, 133, 0.15), transparent 34%),
+      radial-gradient(circle at 92% 96%, rgba(19, 138, 156, 0.14), transparent 38%),
+      linear-gradient(155deg, rgba(255, 255, 255, 0.7), rgba(245, 250, 255, 0.8)),
       var(--color-bg);
     color: var(--color-text);
     line-height: 1.8;
@@ -75,9 +78,17 @@ const {
   h1,
   h2,
   h3 {
+    font-family: var(--font-heading);
     font-weight: 600;
     line-height: 1.25;
     letter-spacing: -0.01em;
+  }
+
+  p,
+  a,
+  button,
+  li {
+    font-family: var(--font-body);
   }
 
   a {
@@ -101,7 +112,11 @@ const {
   }
 
   section {
-    padding: 92px 24px;
+    padding: 80px 24px;
+  }
+
+  main section[id] {
+    scroll-margin-top: var(--anchor-offset);
   }
 
   .container {
@@ -110,8 +125,7 @@ const {
   }
 
   .surface-card {
-    background: linear-gradient(150deg, #ffffff, var(--color-surface-soft));
-    border: 1px solid var(--color-border);
+    background: linear-gradient(155deg, #ffffff, var(--color-surface-soft));
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
   }
@@ -139,10 +153,14 @@ const {
     font-weight: 600;
     display: inline-block;
     border: 1px solid transparent;
+    box-shadow: 0 10px 20px rgba(13, 79, 133, 0.22);
+    transition: all var(--transition);
   }
 
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
+    box-shadow: 0 16px 26px rgba(10, 54, 90, 0.28);
+    transform: translateY(-2px);
     opacity: 1;
   }
 
@@ -154,11 +172,42 @@ const {
     color: var(--color-primary-dark);
     background-color: #ffffff;
     border: 1px solid #b8cff2;
+    transition: all var(--transition);
   }
 
   .btn-secondary:hover {
     background-color: var(--color-primary-light);
+    box-shadow: 0 12px 22px rgba(13, 79, 133, 0.14);
+    transform: translateY(-2px);
     opacity: 1;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal.is-visible,
+    .btn-primary,
+    .btn-secondary,
+    a,
+    * {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
   }
 
   .zigzag-block {
@@ -201,6 +250,10 @@ const {
   }
 
   @media (max-width: 768px) {
+    :root {
+      --anchor-offset: 96px;
+    }
+
     section {
       padding: 74px 20px;
     }
